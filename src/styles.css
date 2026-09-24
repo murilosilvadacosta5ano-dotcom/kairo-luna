@@ -1,0 +1,139 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kairo-bg: #000000;
+  --color-kairo-fg: #f5f5f7;
+  --color-kairo-muted: #8e8e93;
+  --color-kairo-subtle: #636366;
+  --color-kairo-faint: #3a3a3c;
+  --color-kairo-surface: #2c2c2e;
+  --color-kairo-surface-2: #1c1c1e;
+  --color-kairo-chip: #2a2a2c;
+  --color-kairo-composer: #1e1e20;
+  --color-kairo-elevated: #3a3a3c;
+  --color-kairo-border: #2c2c2e;
+  --color-kairo-accent: #5b9dff;
+  --color-kairo-danger: #ff453a;
+
+  --radius-pill: 999px;
+  --radius-chip: 1.375rem;
+  --radius-card: 1.125rem;
+  --radius-composer: 1.625rem;
+  --radius-sheet: 1.5rem;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI",
+    system-ui, sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+    system-ui, sans-serif;
+
+  --ease-kairo: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--color-kairo-bg);
+    color: var(--color-kairo-fg);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  textarea {
+    font-family: inherit;
+  }
+}
+
+@keyframes kairo-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes kairo-pulse-orb {
+  0%,
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.06);
+    filter: brightness(1.15);
+  }
+}
+
+@keyframes kairo-wave {
+  0%,
+  100% {
+    transform: scaleY(0.45);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes kairo-dots {
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+    transform: scale(0.85);
+  }
+  40% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.kairo-thinking {
+  background: linear-gradient(
+    90deg,
+    var(--color-kairo-subtle) 0%,
+    var(--color-kairo-fg) 50%,
+    var(--color-kairo-subtle) 100%
+  );
+  background-size: 200% 100%;
+  animation: kairo-shimmer 1.6s linear infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.kairo-orb {
+  background: conic-gradient(
+    from 210deg,
+    #7af0ff,
+    #4d8cff,
+    #8b7cff,
+    #e879f9,
+    #7af0ff
+  );
+}
+
+.kairo-orb-glow {
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 0 18px rgb(90 160 255 / 0.45);
+}
+
+.kairo-orb-listen {
+  animation: kairo-pulse-orb 1.4s var(--ease-kairo) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kairo-thinking,
+  .kairo-orb-listen,
+  .kairo-wave-bar {
+    animation: none;
+  }
+}
